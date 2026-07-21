@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang='ko'>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+</head>
+<body>
+<title>코드네임 — SaaS 제품 UI 와이어프레임 (v4 지침 준수)</title>
+<style>
+  :root{
+    --text-black:#1A1A1A; --text-dark:#333333; --text-gray:#666666; --text-light:#999999; --text-muted:#BCBCBC;
+    --bg-white:#FFFFFF; --bg-light:#F5F5F5; --bg-dark:#2D2D2D; --bg-black:#1A1A1A;
+    --border-light:#E0E0E0; --border-default:#D0D0D0; --ph-bg:#E4E4E4; --ph-icon:#BCBCBC;
+    --radius-sm:8px; --radius-md:12px; --shadow-sm:0 1px 3px rgba(0,0,0,.08); --shadow-md:0 4px 12px rgba(0,0,0,.1);
+    --railW:236px; --inspW:320px; --topH:56px;
+    --font:"Pretendard","Pretendard Variable",-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg-light);color:var(--text-dark);font-family:var(--font);font-size:15px;line-height:1.55}
+  h1,h2,h3,p{margin:0}
+  button{font-family:inherit;cursor:pointer}
+  svg.ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  :focus-visible{outline:2px solid var(--text-black);outline-offset:2px}
+
+  /* buttons (v4) */
+  .btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:var(--radius-sm);padding:11px 20px;font-weight:700;font-size:14px}
+  .btn.primary{background:var(--text-black);color:#fff}
+  .btn.secondary{background:#fff;color:var(--text-black);border:1px solid var(--text-black)}
+  .btn.ghost{background:transparent;color:var(--text-gray);border:1px solid var(--border-default)}
+  .on-dark .btn.primary{background:#fff;color:var(--text-black)}
+  .btn.sm{padding:7px 13px;font-size:13px}
+
+  .card{background:var(--bg-white);border:1px solid var(--border-light);border-radius:var(--radius-md)}
+  .img-ph{background:var(--ph-bg);display:grid;place-items:center;color:var(--ph-icon)}
+  .img-ph svg{width:28px;height:28px}
+  .bar{height:12px;border-radius:6px;background:var(--ph-bg)}
+  .bar.dark{background:var(--border-default)}
+  .w30{width:30%}.w45{width:45%}.w60{width:60%}.w75{width:75%}.w90{width:90%}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-light)}
+  .muted{color:var(--text-gray)}.faint{color:var(--text-light)}
+
+  /* topbar */
+  .topbar{position:sticky;top:0;z-index:40;height:var(--topH);display:flex;align-items:center;gap:14px;padding:0 22px;background:var(--bg-white);border-bottom:1px solid var(--border-light)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--text-black);letter-spacing:-.02em}
+  .brand .logo{width:28px;height:28px;border-radius:var(--radius-sm);background:var(--ph-bg);display:grid;place-items:center;color:var(--ph-icon)}
+  .brand .cn{font-size:11px;font-weight:700;color:var(--text-light);border:1px solid var(--border-light);padding:2px 7px;border-radius:999px}
+  .top-sp{flex:1}
+  .top-ic{width:38px;height:38px;border-radius:var(--radius-sm);border:1px solid var(--border-light);background:#fff;display:grid;place-items:center;color:var(--text-gray)}
+  .avatar{width:34px;height:34px;border-radius:999px;background:var(--ph-bg);display:grid;place-items:center;color:var(--ph-icon)}
+
+  /* docked sidebar */
+  .sidebar{position:fixed;top:var(--topH);left:0;bottom:0;width:var(--railW);z-index:30;background:var(--bg-white);border-right:1px solid var(--border-light);display:none;flex-direction:column}
+  body.has-rail .sidebar{display:flex}
+  .sb-steps{flex:1;overflow-y:auto;padding:16px 12px}
+  .sb-steps h4{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-light);margin:2px 8px 12px;font-weight:700}
+  .step{display:flex;gap:11px;align-items:center;width:100%;border:0;background:transparent;text-align:left;color:var(--text-gray);font-size:13.5px;padding:10px 10px;border-radius:var(--radius-sm)}
+  .step:hover{background:var(--bg-light)}
+  .step .n{width:24px;height:24px;border-radius:999px;flex:none;display:grid;place-items:center;font-size:11px;font-weight:700;border:1.5px solid var(--border-default);color:var(--text-light);background:#fff}
+  .step.done .n{background:var(--text-black);border-color:var(--text-black);color:#fff}
+  .step.done{color:var(--text-dark)}
+  .step.current{background:var(--bg-light);color:var(--text-black);font-weight:700}
+  .step.current .n{border-color:var(--text-black);color:var(--text-black)}
+  .step .tag{margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;border:1px solid var(--border-default);color:var(--text-gray)}
+  .sb-foot{flex:none;border-top:1px solid var(--border-light);padding:12px;display:flex;flex-direction:column;gap:8px}
+  .sb-foot .btn{width:100%;justify-content:center}
+
+  .inspector{position:fixed;top:var(--topH);right:0;bottom:0;width:var(--inspW);z-index:30;background:var(--bg-white);border-left:1px solid var(--border-light);overflow-y:auto;padding:18px;display:none}
+  body.editing .inspector{display:block}
+
+  .content{}
+  body.has-rail .content{margin-left:var(--railW)}
+  body.editing .content{margin-right:var(--inspW)}
+  .wrap{max-width:880px;margin:0 auto;padding:28px 24px 80px}
+  body.has-rail .wrap{max-width:1000px}
+  body.editing .wrap{max-width:none;padding:0}
+
+  .screen{display:none}.screen.active{display:block}
+
+  /* panel(위저드 카드) */
+  .panel{background:var(--bg-white);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:28px}
+  .panel h2{font-size:22px;color:var(--text-black);letter-spacing:-.02em;margin-top:6px}
+  .lede{color:var(--text-gray);margin-top:8px;max-width:54ch}
+  .hintbox{display:flex;gap:10px;align-items:flex-start;background:var(--bg-light);border:1px solid var(--border-light);border-radius:var(--radius-sm);padding:12px 14px;margin-top:18px;font-size:13.5px;color:var(--text-gray)}
+  .actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+  .hint{margin-top:22px;font-size:12.5px;color:var(--text-light);text-align:center}
+
+  /* dashboard */
+  .dash-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .dash-head h1{font-size:26px;color:var(--text-black);letter-spacing:-.03em}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+  .pcard .thumb{height:120px;border-bottom:1px solid var(--border-light);border-radius:var(--radius-md) var(--radius-md) 0 0;position:relative;overflow:hidden}
+  .pcard .pin{position:absolute;left:12px;top:12px;font-size:11px;font-weight:700;background:#fff;border:1px solid var(--border-light);border-radius:999px;padding:3px 9px;color:var(--text-gray)}
+  .pcard .body{padding:15px}
+  .pcard .ttl{font-weight:700;color:var(--text-black)}
+  .pcard .url{font-size:12px;color:var(--text-light);margin-top:2px}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;padding:6px 11px;border-radius:999px;margin-top:13px;border:1px solid var(--border-default);color:var(--text-gray)}
+  .badge svg{width:14px;height:14px}
+  .badge.solid{background:var(--text-black);color:#fff;border-color:var(--text-black)}
+  .progress{height:6px;border-radius:999px;background:var(--ph-bg);margin-top:12px;overflow:hidden}
+  .progress i{display:block;height:100%;background:var(--text-dark)}
+  .newcard{display:grid;place-content:center;gap:10px;min-height:220px;border:1.5px dashed var(--border-default);border-radius:var(--radius-md);color:var(--text-gray);font-weight:700;text-align:center;background:transparent}
+  .newcard:hover{border-color:var(--text-black);color:var(--text-black)}
+  .newcard .pl{width:40px;height:40px;border-radius:999px;border:1.5px solid var(--border-default);display:grid;place-items:center;margin:0 auto}
+
+  /* upload */
+  .drop{margin-top:20px;border:1.5px dashed var(--border-default);border-radius:var(--radius-md);padding:32px;text-align:center;background:var(--bg-light)}
+  .drop .pl{width:44px;height:44px;border-radius:var(--radius-sm);background:var(--ph-bg);color:var(--ph-icon);display:grid;place-items:center;margin:0 auto 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+  .chip{border:1px solid var(--border-light);background:#fff;border-radius:999px;padding:8px 14px;font-size:13.5px;color:var(--text-gray);display:inline-flex;gap:8px;align-items:center}
+  .chip[aria-pressed="true"]{border-color:var(--text-black);color:var(--text-black);font-weight:700}
+  .chip svg{width:15px;height:15px}
+
+  /* interview */
+  .chat{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+  .bubble{max-width:80%;padding:12px 15px;border-radius:14px;font-size:14px;border:1px solid var(--border-light)}
+  .bubble.ai{align-self:flex-start;background:var(--bg-light);border-bottom-left-radius:4px;color:var(--text-dark)}
+  .bubble.me{align-self:flex-end;background:var(--text-black);color:#fff;border-color:var(--text-black);border-bottom-right-radius:4px}
+  .mic{display:flex;align-items:center;gap:14px;margin-top:20px;padding:14px 16px;border:1px solid var(--border-light);border-radius:999px;background:var(--bg-light)}
+  .mic .rec{width:44px;height:44px;border-radius:999px;background:var(--text-black);color:#fff;display:grid;place-items:center;flex:none}
+  .wave{display:flex;align-items:flex-end;gap:3px;height:22px}
+  .wave span{width:3px;background:var(--text-muted);border-radius:2px}
+
+  /* sitemap tree */
+  .tree{display:flex;flex-direction:column;gap:9px;margin-top:20px}
+  .node{border:1px solid var(--border-light);border-radius:var(--radius-sm);padding:12px 14px;background:var(--bg-light);display:flex;align-items:center;gap:11px;color:var(--text-dark);font-weight:600}
+  .node svg{width:17px;height:17px;color:var(--text-gray)}
+  .node.sub{margin-left:26px;background:#fff;font-weight:400}
+  .node .mini{margin-left:auto;font-size:12px;color:var(--text-light);font-weight:400}
+
+  /* color step (그레이스케일 표현) */
+  .swatches{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;align-items:center}
+  .sw{width:72px;height:72px;border-radius:var(--radius-sm);border:1px solid var(--border-default);background:var(--ph-bg);display:grid;place-items:end;padding:8px;position:relative}
+  .sw span{font-size:11px;color:var(--text-gray);font-weight:700}
+  .sw[aria-pressed="true"]{border:2px solid var(--text-black)}
+  .sw.rec::before{content:"추천";position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:800;color:var(--text-black);background:#fff;border:1px solid var(--text-black);border-radius:999px;padding:1px 7px}
+  .sw.pick{display:grid;place-items:center;color:var(--text-gray);border-style:dashed}
+
+  .styles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:20px}
+  .stile{border:1px solid var(--border-light);border-radius:var(--radius-sm);overflow:hidden;background:#fff;text-align:left;padding:0}
+  .stile[aria-pressed="true"]{border-color:var(--text-black)}
+  .stile .prev{height:80px;border-bottom:1px solid var(--border-light);background:var(--bg-light);display:flex;flex-direction:column;gap:6px;padding:12px;justify-content:center}
+  .stile .nm{padding:9px 12px;font-size:13px;font-weight:600;color:var(--text-dark)}
+
+  /* generate */
+  .gen{display:grid;place-items:center;text-align:center;padding:40px 20px}
+  .halo{width:88px;height:88px;border-radius:var(--radius-md);border:1.5px solid var(--border-default);display:grid;place-items:center;margin-bottom:20px;color:var(--text-gray)}
+  .halo svg{width:34px;height:34px}
+  .genbars{display:flex;flex-direction:column;gap:10px;width:min(420px,100%);margin-top:8px;text-align:left}
+  .genrow{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--text-gray)}
+  .genrow .st{margin-left:auto;font-size:12px;font-weight:700}
+
+  .published{text-align:center;padding:30px 20px}
+  .published .big{width:72px;height:72px;border-radius:999px;border:1.5px solid var(--border-default);display:grid;place-items:center;margin:0 auto 18px;color:var(--text-dark)}
+  .liveurl{display:inline-flex;align-items:center;gap:10px;margin-top:18px;border:1px solid var(--border-light);background:#fff;border-radius:999px;padding:10px 16px;font-weight:600;color:var(--text-dark)}
+
+  /* ===== editor (3분할) ===== */
+  .ed-top{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border-light);background:var(--bg-white)}
+  .ed-top .name{font-weight:700;color:var(--text-black)}
+  .ed-top .modes{display:inline-flex;background:var(--bg-light);border:1px solid var(--border-light);border-radius:999px;padding:3px}
+  .ed-top .modes button{border:0;background:transparent;color:var(--text-gray);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+  .ed-top .modes button.on{background:#fff;color:var(--text-black);box-shadow:var(--shadow-sm)}
+  .ed-top .grow{flex:1}
+  .ed-note{font-size:12.5px;color:var(--text-light)}
+  body.editing #editor{height:calc(100vh - var(--topH));display:flex;flex-direction:column}
+  body.editing .ed-top{flex:none}
+  .site{flex:1;overflow-y:auto;background:#fff}
+
+  .sec{position:relative;outline:2px solid transparent;outline-offset:-2px}
+  .sec:hover{outline-color:var(--border-default)}
+  .sec.selected{outline-color:var(--text-black)}
+  .sec-tools{position:absolute;top:8px;right:8px;display:none;gap:6px;z-index:6}
+  .sec:hover .sec-tools{display:flex}
+  .sec-tools button{border:1px solid var(--border-default);background:#fff;color:var(--text-dark);border-radius:var(--radius-sm);padding:5px 9px;font-size:12px;font-weight:600;display:inline-flex;gap:5px;align-items:center;box-shadow:var(--shadow-sm)}
+  .sec-tag{position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;color:var(--text-gray);background:#fff;border:1px solid var(--border-light);border-radius:999px;padding:2px 8px;display:none;z-index:6}
+  .sec:hover .sec-tag{display:block}
+  .et,.ei{cursor:pointer}
+  .et:hover{outline:2px solid var(--border-default);outline-offset:2px}
+  .ei:hover{outline:2px dashed var(--text-gray);outline-offset:2px}
+
+  .wf-nav{display:flex;align-items:center;gap:16px;padding:16px 28px;border-bottom:1px solid var(--border-light)}
+  .wf-nav .lg{width:90px}
+  .wf-hero{padding:56px 28px;display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;background:var(--bg-light)}
+  .wf-hero .txt{display:flex;flex-direction:column;gap:12px}
+  .wf-hero .img-ph{height:220px;border-radius:var(--radius-md)}
+  .wf-sec{padding:48px 28px}
+  .wf-sec.alt{background:var(--bg-light)}
+  .wf-sec h3{text-align:center;margin:0 0 6px}
+  .wf-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+  .wf-cards .c{border:1px solid var(--border-light);border-radius:var(--radius-md);padding:18px;background:#fff;display:flex;flex-direction:column;gap:10px}
+  .wf-cards .c .img-ph{height:120px;border-radius:var(--radius-sm)}
+  .wf-foot{padding:30px 28px;background:var(--bg-dark)}
+  .wf-foot .bar{background:#4a4a4a}
+
+  /* right panel content */
+  .rh{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-light);font-weight:700;margin-bottom:12px}
+  .empty{color:var(--text-light);font-size:13.5px;text-align:center;padding:26px 8px}
+  .empty svg{width:26px;height:26px;margin-bottom:10px;color:var(--text-muted)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:12px;font-weight:700;color:var(--text-gray);margin-bottom:6px}
+  .field textarea,.field input{width:100%;border:1px solid var(--border-default);border-radius:var(--radius-sm);padding:10px 12px;font-family:inherit;font-size:14px;background:#fff;color:var(--text-dark)}
+  .uploadbtn{display:block;text-align:center;border:1.5px dashed var(--border-default);border-radius:var(--radius-sm);padding:14px;color:var(--text-gray);font-weight:700;font-size:13.5px;background:var(--bg-light)}
+
+  /* modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(26,26,26,.45);display:none;place-items:center;z-index:60;padding:20px}
+  .modal-bg.open{display:grid}
+  .modal{background:#fff;border-radius:var(--radius-md);box-shadow:var(--shadow-md);width:min(620px,100%);max-height:86vh;overflow:auto;border:1px solid var(--border-light)}
+  .modal .mh{display:flex;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid var(--border-light)}
+  .modal .mh h3{font-size:16px;color:var(--text-black)}
+  .modal .mh .x{margin-left:auto;border:1px solid var(--border-light);background:#fff;border-radius:999px;width:30px;height:30px;display:grid;place-items:center;color:var(--text-gray)}
+  .modal .mb{padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .lay{border:1.5px solid var(--border-default);border-radius:var(--radius-sm);overflow:hidden;background:#fff;text-align:left;padding:0}
+  .lay:hover,.lay.on{border-color:var(--text-black)}
+  .lay .lp{height:76px;background:var(--bg-light);border-bottom:1px solid var(--border-light);padding:10px;display:flex;flex-direction:column;gap:6px;justify-content:center}
+  .lay .ln{padding:8px 11px;font-size:12.5px;font-weight:600;color:var(--text-dark)}
+
+  @media(max-width:960px){
+    .sidebar{position:static;width:auto;display:none;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--border-light)}
+    body.has-rail .sidebar{display:flex}.sb-steps{display:flex;gap:6px}.sb-steps h4,.sb-foot,.step .tag{display:none}
+    .step{flex:none;flex-direction:column;gap:5px;min-width:58px;text-align:center;font-size:11px}
+    body.has-rail .content{margin-left:0}
+    .inspector{position:static;width:auto;display:none;border-left:0;border-top:1px solid var(--border-light)}
+    body.editing .inspector{display:block}body.editing .content{margin-right:0}body.editing #editor{height:auto}.site{height:60vh}
+    .wf-hero,.wf-cards{grid-template-columns:1fr}
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.5-3.5a2 2 0 0 0-3 0L5 21"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10a7 7 0 0 1-14 0"/><path d="M12 17v4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+  <symbol id="i-move" viewBox="0 0 24 24"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
+  <symbol id="i-wand" viewBox="0 0 24 24"><path d="m15 4 1 2 2 1-2 1-1 2-1-2-2-1 2-1zM4 20l9-9M18 14l.7 1.4 1.3.6-1.3.6-.7 1.4-.7-1.4-1.3-.6 1.3-.6z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-check2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
+</defs></svg>
+
+<div class="topbar">
+  <div class="brand"><span class="logo"><svg class="ic"><use href="#i-image"/></svg></span>코드네임<span class="cn">브랜드명 확정 전</span></div>
+  <div class="top-sp"></div>
+  <button class="top-ic" aria-label="알림"><svg class="ic"><use href="#i-bell"/></svg></button>
+  <button class="btn secondary sm" onclick="go('dashboard')">내 사이트</button>
+  <div class="avatar"><svg class="ic"><use href="#i-user"/></svg></div>
+</div>
+
+<aside class="sidebar" id="sidebar"></aside>
+<aside class="inspector" id="inspector"><div id="panelR"></div></aside>
+
+<main class="content" id="content"><div class="wrap" id="wrap">
+
+  <!-- DASHBOARD -->
+  <section class="screen active" id="dashboard">
+    <div class="dash-head"><div>
+      <div class="eyebrow">내 작업 공간</div><h1>안녕하세요, 김사장님</h1>
+      <p class="lede">사이트를 만들다 멈춰도 괜찮아요. AI가 이어서 작업하고, 김사장님 차례가 오면 알려드립니다.</p>
+    </div><button class="btn primary" onclick="go('upload')"><svg class="ic"><use href="#i-plus"/></svg>새 사이트 만들기</button></div>
+    <div class="grid">
+      <button class="card pcard" onclick="openEditor('wireframe')"><div class="thumb img-ph"><svg class="ic"><use href="#i-image"/></svg><span class="pin">한정식 · 한국어</span></div>
+        <div class="body"><div class="ttl">봄날 한정식</div><div class="url">bomnal.example.kr</div><div class="badge"><svg class="ic"><use href="#i-edit"/></svg>김사장님 차례 · 뼈대 확인</div></div></button>
+      <button class="card pcard" onclick="go('generate')"><div class="thumb img-ph"><svg class="ic"><use href="#i-image"/></svg><span class="pin">공방 · 한국어</span></div>
+        <div class="body"><div class="ttl">모모 도자기 공방</div><div class="url">momo.example.kr</div><div class="badge"><svg class="ic"><use href="#i-wand"/></svg>AI가 디자인 만드는 중</div><div class="progress"><i style="width:64%"></i></div></div></button>
+      <button class="card pcard" onclick="go('published')"><div class="thumb img-ph"><svg class="ic"><use href="#i-image"/></svg><span class="pin">필라테스 · 한국어</span></div>
+        <div class="body"><div class="ttl">코어무브 필라테스</div><div class="url">coremove.example.kr</div><div class="badge solid"><svg class="ic"><use href="#i-check"/></svg>공개 중 · 방문 12명</div></div></button>
+      <button class="newcard" onclick="go('upload')"><span class="pl"><svg class="ic"><use href="#i-plus"/></svg></span>새 사이트 만들기</button>
+    </div>
+    <p class="hint">— 그레이스케일 와이어프레임 (와이어프레임 지침서 v4). 카드를 눌러 각 단계를 걸어보세요. —</p>
+  </section>
+
+  <!-- 1 업로드 -->
+  <section class="screen" id="upload"><div class="panel">
+    <div class="eyebrow">1단계 · 자료 모으기</div><h2>가진 자료를 그냥 던져 주세요</h2>
+    <p class="lede">메뉴판 사진, 예전 블로그 글, 로고 파일 — 뭐든 괜찮아요. 정리는 AI가 합니다.</p>
+    <div class="drop"><div class="pl"><svg class="ic"><use href="#i-upload"/></svg></div><div style="font-weight:700;color:var(--text-dark)">여기로 끌어다 놓기</div><div class="faint" style="font-size:13px;margin-top:4px">사진 · PDF · 링크 · 문서</div></div>
+    <div class="chips"><span class="chip"><svg class="ic"><use href="#i-image"/></svg>메뉴판_2.jpg</span><span class="chip"><svg class="ic"><use href="#i-file"/></svg>회사소개.pdf</span><span class="chip"><svg class="ic"><use href="#i-link"/></svg>인스타그램 링크</span></div>
+    <div class="hintbox"><svg class="ic"><use href="#i-check2"/></svg><div>자료가 부족해도 걱정 마세요. 다음 단계에서 AI가 몇 가지만 물어보고 채워드립니다.</div></div>
+    <div class="actions"><button class="btn ghost" onclick="go('dashboard')">나중에</button><button class="btn primary" onclick="go('interview')">다음 · AI와 이야기하기<svg class="ic"><use href="#i-right"/></svg></button></div>
+  </div></section>
+
+  <!-- 2 인터뷰 -->
+  <section class="screen" id="interview"><div class="panel">
+    <div class="eyebrow">2단계 · AI 인터뷰</div><h2>말로 답하면 됩니다</h2>
+    <p class="lede">타이핑 대신 편하게 말씀하세요. AI가 듣고 사이트에 필요한 내용을 정리합니다.</p>
+    <div class="chat"><div class="bubble ai">가게를 한마디로 소개한다면 어떤 곳인가요?</div><div class="bubble me">정갈한 한정식집이고, 부모님 모시고 오기 좋은 곳이에요</div><div class="bubble ai">좋아요. 예약이나 문의는 주로 전화로 받으시나요?</div></div>
+    <div class="mic"><div class="rec"><svg class="ic"><use href="#i-mic"/></svg></div><div class="wave"><span style="height:6px"></span><span style="height:16px"></span><span style="height:22px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:8px"></span></div><div class="faint" style="font-size:13px">듣고 있어요…</div></div>
+    <div class="actions"><button class="btn ghost" onclick="go('upload')"><svg class="ic"><use href="#i-left"/></svg>이전</button><button class="btn primary" onclick="go('features')">다음 · 기능 고르기<svg class="ic"><use href="#i-right"/></svg></button></div>
+  </div></section>
+
+  <!-- 3 기능 -->
+  <section class="screen" id="features"><div class="panel">
+    <div class="eyebrow">3단계 · 기능 고르기</div><h2>어떤 게 필요하세요?</h2>
+    <p class="lede">잘 모르겠으면 AI 추천(체크된 것)만 켜두셔도 됩니다. 나중에 언제든 바꿀 수 있어요.</p>
+    <div class="chips"><button class="chip" aria-pressed="true" onclick="tog(this)"><svg class="ic"><use href="#i-check"/></svg>문의 받기</button><button class="chip" aria-pressed="true" onclick="tog(this)"><svg class="ic"><use href="#i-check"/></svg>오시는 길·지도</button><button class="chip" aria-pressed="true" onclick="tog(this)"><svg class="ic"><use href="#i-check"/></svg>메뉴·가격 소개</button><button class="chip" aria-pressed="false" onclick="tog(this)">예약 신청</button><button class="chip" aria-pressed="false" onclick="tog(this)">사진 갤러리</button><button class="chip" aria-pressed="false" onclick="tog(this)">공지·소식</button></div>
+    <div class="hintbox"><svg class="ic"><use href="#i-check2"/></svg><div>체크된 3개는 김사장님 업종에서 가장 많이 쓰는 기능이라 AI가 미리 켜뒀어요.</div></div>
+    <div class="actions"><button class="btn ghost" onclick="go('interview')"><svg class="ic"><use href="#i-left"/></svg>이전</button><button class="btn primary" onclick="go('sitemap')">다음 · 사이트 구성 보기<svg class="ic"><use href="#i-right"/></svg></button></div>
+  </div></section>
+
+  <!-- 4 사이트맵 -->
+  <section class="screen" id="sitemap"><div class="panel">
+    <div class="eyebrow">4단계 · 사이트 구성</div><h2>이렇게 구성해 봤어요</h2>
+    <p class="lede">AI가 김사장님 이야기를 듣고 짠 페이지 구성입니다. 마음에 들면 그대로, 아니면 손대세요.</p>
+    <div class="tree"><div class="node"><svg class="ic"><use href="#i-home"/></svg>첫 화면<span class="mini">인사말 · 대표 메뉴 · 문의</span></div><div class="node sub"><svg class="ic"><use href="#i-file"/></svg>가게 소개<span class="mini">이야기 · 사진</span></div><div class="node sub"><svg class="ic"><use href="#i-file"/></svg>메뉴<span class="mini">한정식 코스 · 가격</span></div><div class="node sub"><svg class="ic"><use href="#i-pin"/></svg>오시는 길<span class="mini">지도 · 주차</span></div><div class="node sub"><svg class="ic"><use href="#i-mic"/></svg>문의하기<span class="mini">전화 · 폼</span></div></div>
+    <div class="actions"><button class="btn ghost" onclick="go('features')"><svg class="ic"><use href="#i-left"/></svg>이전</button><button class="btn primary" onclick="openEditor('wireframe')">이대로 좋아요 · 뼈대 보기<svg class="ic"><use href="#i-right"/></svg></button></div>
+  </div></section>
+
+  <!-- 5+9 EDITOR -->
+  <section class="screen" id="editor">
+    <div class="ed-top"><span class="name">봄날 한정식</span>
+      <div class="modes"><button id="mode-wire" class="on" onclick="setMode('wireframe')">뼈대</button><button id="mode-design" onclick="setMode('design')">디자인</button></div>
+      <span class="ed-note" id="edNote">색·꾸밈은 다음 단계에서. 지금은 구성만 봐 주세요.</span>
+      <span class="grow"></span><span class="faint" style="font-size:12px">bomnal.example.kr</span>
+    </div>
+    <div class="site" id="site">
+      <div class="sec" data-t="nav" data-l="메뉴바"><span class="sec-tag">메뉴바</span><div class="sec-tools"><button class="h" title="이동"><svg class="ic"><use href="#i-move"/></svg></button><button onclick="openStyle(this)"><svg class="ic"><use href="#i-layout"/></svg>수정</button></div>
+        <div class="wf-nav"><div class="bar dark lg et"></div><div style="flex:1"></div><div class="bar w30 et" style="max-width:180px"></div></div></div>
+      <div class="sec" data-t="hero" data-l="첫 화면"><span class="sec-tag">첫 화면(히어로)</span><div class="sec-tools"><button class="h" title="이동"><svg class="ic"><use href="#i-move"/></svg></button><button onclick="openStyle(this)"><svg class="ic"><use href="#i-layout"/></svg>수정</button></div>
+        <div class="wf-hero"><div class="txt"><div class="bar dark w75 et" style="height:26px"></div><div class="bar w90 et"></div><div class="bar w60 et"></div><div style="margin-top:8px"><span class="btn primary et">예약 문의하기</span></div></div><div class="img-ph ei" data-n="히어로 배경"><svg class="ic"><use href="#i-image"/></svg></div></div></div>
+      <div class="sec" data-t="about" data-l="가게 소개"><span class="sec-tag">가게 소개</span><div class="sec-tools"><button class="h" title="이동"><svg class="ic"><use href="#i-move"/></svg></button><button onclick="openStyle(this)"><svg class="ic"><use href="#i-layout"/></svg>수정</button></div>
+        <div class="wf-hero" style="background:#fff"><div class="img-ph ei" data-n="소개 사진"><svg class="ic"><use href="#i-image"/></svg></div><div class="txt"><div class="bar dark w60 et" style="height:22px"></div><div class="bar w90 et"></div><div class="bar w75 et"></div><div class="bar w45 et"></div></div></div></div>
+      <div class="sec" data-t="menu" data-l="메뉴"><span class="sec-tag">메뉴</span><div class="sec-tools"><button class="h" title="이동"><svg class="ic"><use href="#i-move"/></svg></button><button onclick="openStyle(this)"><svg class="ic"><use href="#i-layout"/></svg>수정</button></div>
+        <div class="wf-sec alt"><h3><span class="bar dark w30 et" style="display:inline-block;height:20px;vertical-align:middle"></span></h3>
+          <div class="wf-cards"><div class="c"><div class="img-ph ei" data-n="메뉴 사진"><svg class="ic"><use href="#i-image"/></svg></div><div class="bar w60 et"></div><div class="bar w30 et"></div></div><div class="c"><div class="img-ph ei" data-n="메뉴 사진"><svg class="ic"><use href="#i-image"/></svg></div><div class="bar w60 et"></div><div class="bar w30 et"></div></div><div class="c"><div class="img-ph ei" data-n="메뉴 사진"><svg class="ic"><use href="#i-image"/></svg></div><div class="bar w60 et"></div><div class="bar w30 et"></div></div></div></div></div>
+      <div class="sec" data-t="contact" data-l="오시는 길"><span class="sec-tag">오시는 길</span><div class="sec-tools"><button class="h" title="이동"><svg class="ic"><use href="#i-move"/></svg></button><button onclick="openStyle(this)"><svg class="ic"><use href="#i-layout"/></svg>수정</button></div>
+        <div class="wf-hero" style="background:#fff"><div class="img-ph ei" data-n="지도"><svg class="ic"><use href="#i-pin"/></svg></div><div class="txt"><div class="bar dark w45 et" style="height:20px"></div><div class="bar w75 et"></div><div class="bar w60 et"></div></div></div></div>
+      <div class="sec" data-t="footer" data-l="맨 아래"><span class="sec-tag">맨 아래(푸터)</span><div class="sec-tools"><button class="h" title="이동"><svg class="ic"><use href="#i-move"/></svg></button><button onclick="openStyle(this)"><svg class="ic"><use href="#i-layout"/></svg>수정</button></div>
+        <div class="wf-foot"><div class="bar w30 et" style="margin-bottom:12px"></div><div class="bar w75"></div><div class="bar w45" style="margin-top:8px"></div></div></div>
+    </div>
+  </section>
+
+  <!-- 6 색 (그레이스케일 표현) -->
+  <section class="screen" id="color"><div class="panel">
+    <div class="eyebrow">6단계 · 색</div><h2>어떤 느낌이 좋으세요?</h2>
+    <p class="lede">AI가 올려주신 자료와 인터뷰를 보고 브랜드에 어울리는 색을 추천합니다. 직접 색상 코드를 넣어 바꿀 수도 있어요. (와이어프레임이라 색은 회색으로 표시)</p>
+    <div class="swatches"><button class="sw rec" aria-pressed="true" onclick="pick(this)"><span>추천 톤</span></button><button class="sw" onclick="pick(this)"><span>톤 2</span></button><button class="sw" onclick="pick(this)"><span>톤 3</span></button><button class="sw" onclick="pick(this)"><span>톤 4</span></button><button class="sw pick" onclick="openColor()"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+    <div class="hintbox"><svg class="ic"><use href="#i-check2"/></svg><div>‘정갈한 한정식’이라 하셔서 차분한 톤을 추천드려요. 오른쪽 <b>+</b>로 #98723A 같은 코드를 직접 넣을 수 있어요.</div></div>
+    <div class="actions"><button class="btn ghost" onclick="openEditor('wireframe')"><svg class="ic"><use href="#i-left"/></svg>이전</button><button class="btn primary" onclick="go('style')">다음 · 분위기 고르기<svg class="ic"><use href="#i-right"/></svg></button></div>
+  </div></section>
+
+  <!-- 7 분위기 -->
+  <section class="screen" id="style"><div class="panel">
+    <div class="eyebrow">7단계 · 분위기</div><h2>어울리는 분위기를 골라 주세요</h2>
+    <p class="lede">같은 내용도 분위기에 따라 느낌이 달라져요. 업종에 맞는 걸 위에 올려뒀어요.</p>
+    <div class="styles"><button class="stile" aria-pressed="true" onclick="pick(this)"><div class="prev"><div class="bar dark w45"></div><div class="bar w75"></div></div><div class="nm">단정하고 정갈한</div></button><button class="stile" onclick="pick(this)"><div class="prev"><div class="bar w60"></div><div class="bar dark w30"></div></div><div class="nm">따뜻하고 편안한</div></button><button class="stile" onclick="pick(this)"><div class="prev"><div class="bar dark w75"></div><div class="bar w45"></div></div><div class="nm">모던하고 깔끔한</div></button><button class="stile" onclick="pick(this)"><div class="prev"><div class="bar w30"></div><div class="bar dark w60"></div></div><div class="nm">고급스러운</div></button></div>
+    <div class="actions"><button class="btn ghost" onclick="go('color')"><svg class="ic"><use href="#i-left"/></svg>이전</button><button class="btn primary" onclick="go('generate')">이걸로 디자인 만들기<svg class="ic"><use href="#i-right"/></svg></button></div>
+  </div></section>
+
+  <!-- 8 생성 -->
+  <section class="screen" id="generate"><div class="panel"><div class="gen">
+    <div class="halo"><svg class="ic"><use href="#i-wand"/></svg></div><div class="eyebrow">8단계 · AI가 만드는 중</div><h2 style="margin-top:8px">디자인을 그리고 있어요</h2>
+    <p class="lede" style="margin:8px auto 0">첫 화면부터 보여드릴게요. 창을 닫아도 계속 만들어지고, 다 되면 이메일로 알려드립니다.</p>
+    <div class="genbars"><div class="genrow"><svg class="ic"><use href="#i-check"/></svg>첫 화면<span class="st">완성</span></div><div class="genrow"><svg class="ic"><use href="#i-check"/></svg>가게 소개<span class="st">완성</span></div><div class="genrow">메뉴<div class="progress" style="flex:1"><i style="width:70%"></i></div><span class="st faint">만드는 중</span></div><div class="genrow faint">오시는 길<span class="st">대기 중</span></div></div>
+    <div class="actions"><button class="btn ghost" onclick="go('dashboard')">대시보드로</button><button class="btn primary" onclick="openEditor('design')">완성분 편집하기<svg class="ic"><use href="#i-right"/></svg></button></div>
+  </div></div></section>
+
+  <!-- 발행 -->
+  <section class="screen" id="published"><div class="published">
+    <div class="big"><svg class="ic"><use href="#i-check2"/></svg></div><div class="eyebrow">공개 완료</div><h2 style="font-size:25px;color:var(--text-black);margin-top:8px">사이트가 세상에 공개됐어요</h2>
+    <p class="lede" style="margin:10px auto 0">이제 누구나 아래 주소로 볼 수 있어요. 언제든 다시 눌러서 고칠 수 있습니다.</p>
+    <div><div class="liveurl"><svg class="ic"><use href="#i-link"/></svg>bomnal.example.kr</div></div>
+    <div class="actions" style="justify-content:center"><button class="btn secondary" onclick="openEditor('design')">계속 편집</button><button class="btn primary" onclick="go('dashboard')">내 사이트 목록</button></div>
+    <p class="hint">— 프로토타입 끝. 상단 ‘내 사이트’로 처음부터 다시 —</p>
+  </div></section>
+
+</div></main>
+
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeStyle()"><div class="modal" role="dialog" aria-modal="true"><div class="mh"><h3 id="modalTitle">배치 바꾸기</h3><button class="x" onclick="closeStyle()"><svg class="ic"><use href="#i-plus"/></svg></button></div><div class="mb" id="modalBody"></div></div></div>
+
+<script>
+  var STEPS=[{id:'upload',n:'1',label:'자료'},{id:'interview',n:'2',label:'인터뷰'},{id:'features',n:'3',label:'기능'},{id:'sitemap',n:'4',label:'구성'},{id:'wireframe',n:'5',label:'뼈대'},{id:'color',n:'6',label:'색'},{id:'style',n:'7',label:'분위기'},{id:'generate',n:'8',label:'생성',tag:'AI'},{id:'editor',n:'9',label:'편집',tag:'내 차례'}];
+  var RAIL=['upload','interview','features','sitemap','editor','color','style','generate'];
+  function railHTML(cur){var idx=STEPS.findIndex(s=>s.id===cur);return '<h4>사이트 만들기</h4>'+STEPS.map((s,i)=>{var cls='step'+(i<idx?' done':'')+(s.id===cur?' current':'');var ic=i<idx?'<svg class="ic" style="width:13px;height:13px"><use href="#i-check"/></svg>':s.n;var tag=s.id===cur&&s.tag?'<span class="tag">'+s.tag+'</span>':'';return '<button class="'+cls+'" onclick="railGo(\''+s.id+'\')"><span class="n">'+ic+'</span><span>'+s.label+'</span>'+tag+'</button>';}).join('');}
+  var editorStep='wireframe';
+  function renderSidebar(step){var foot='';if(step==='wireframe')foot='<div class="sb-foot"><button class="btn ghost" onclick="go(\'sitemap\')">이전</button><button class="btn primary" onclick="go(\'color\')">확인 · 색 고르기</button></div>';else if(step==='editor')foot='<div class="sb-foot"><button class="btn ghost" onclick="go(\'generate\')">이전</button><button class="btn primary" onclick="go(\'published\')">공개하기</button></div>';document.getElementById('sidebar').innerHTML='<div class="sb-steps">'+railHTML(step)+'</div>'+foot;}
+  function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));var t=document.getElementById(id);if(t)t.classList.add('active');var need=RAIL.indexOf(id)>=0;document.body.classList.toggle('has-rail',need);document.body.classList.toggle('editing',id==='editor');if(need)renderSidebar(id==='editor'?editorStep:id);window.scrollTo({top:0,behavior:'smooth'});}
+  function railGo(id){if(id==='wireframe')openEditor('wireframe');else if(id==='editor')openEditor('design');else go(id);}
+  function tog(b){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');}
+  function pick(b){[...b.parentElement.children].forEach(s=>s.setAttribute&&s.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');}
+
+  var site=document.getElementById('site'),panel=document.getElementById('panelR');
+  function openEditor(m){editorStep=(m==='wireframe'?'wireframe':'editor');go('editor');setMode(m);clearPanel();}
+  function setMode(m){var wire=m==='wireframe';editorStep=wire?'wireframe':'editor';document.getElementById('mode-wire').classList.toggle('on',wire);document.getElementById('mode-design').classList.toggle('on',!wire);document.getElementById('edNote').textContent=wire?'색·꾸밈은 다음 단계에서. 지금은 구성만 봐 주세요.':'글자·사진을 눌러 바로 고쳐 보세요.';renderSidebar(editorStep);}
+  function clearPanel(){document.querySelectorAll('.sec.selected').forEach(s=>s.classList.remove('selected'));panel.innerHTML='<div class="rh">수정</div><div class="empty"><svg class="ic"><use href="#i-edit"/></svg><br>왼쪽에서 <b>글자</b>나 <b>사진</b>을 눌러보세요.<br>여기서 바로 고칠 수 있어요.<br><br>섹션 이동은 이동 아이콘, 배치 변경은 <b>수정</b>.</div>';}
+  site.addEventListener('click',function(e){var img=e.target.closest('.ei'),txt=e.target.closest('.et');if(img){sel(img);selImg(img);e.stopPropagation();return;}if(txt){sel(txt);selTxt(txt);e.stopPropagation();}});
+  function sel(el){document.querySelectorAll('.sec.selected').forEach(s=>s.classList.remove('selected'));var s=el.closest('.sec');if(s)s.classList.add('selected');}
+  function selTxt(el){panel.innerHTML='<div class="rh">글자 고치기</div><div style="font-weight:700;margin-bottom:4px">선택한 글자</div><div class="faint" style="font-size:12.5px;margin-bottom:14px">고치면 사이트에 바로 반영돼요.</div><div class="field"><label>내용</label><textarea rows="3">여기에 입력</textarea></div><button class="btn ghost" style="width:100%;justify-content:center"><svg class="ic"><use href="#i-wand"/></svg>AI에게 더 나은 문구 부탁</button>';}
+  function selImg(el){panel.innerHTML='<div class="rh">사진 바꾸기</div><div style="font-weight:700;margin-bottom:4px">'+(el.getAttribute('data-n')||'이미지')+'</div><div class="faint" style="font-size:12.5px;margin-bottom:12px">스톡 이미지 자동 추천 또는 직접 올리기</div><div class="img-ph" style="height:120px;border-radius:8px;margin-bottom:12px"><svg class="ic"><use href="#i-image"/></svg></div><label class="uploadbtn"><svg class="ic"><use href="#i-upload"/></svg> 사진 올리기</label>';}
+
+  var VAR={hero:[['배경형','큰 사진 위 글자'],['좌우 분할','왼쪽 글·오른쪽 사진'],['미니멀 중앙','사진 없이 단정']],menu:[['3칸 그리드',''],['4칸 그리드',''],['리스트','']],about:[['사진 왼쪽',''],['사진 오른쪽','']],nav:[['가로 메뉴',''],['가운데 로고','']],contact:[['지도+정보',''],['정보 중심','']],footer:[['3단 정보',''],['간단 한 줄','']]};
+  var styleSec=null;
+  function openStyle(btn){styleSec=btn.closest('.sec');var t=styleSec.getAttribute('data-t'),l=styleSec.getAttribute('data-l');document.getElementById('modalTitle').textContent=l+' 배치 바꾸기';var list=VAR[t]||[['기본','']];document.getElementById('modalBody').innerHTML=list.map((o,i)=>'<button class="lay'+(i===0?' on':'')+'" onclick="applyVar(this)"><div class="lp"><div class="bar dark" style="width:'+(40+i*15)+'%"></div><div class="bar" style="width:70%"></div></div><div class="ln">'+o[0]+'</div></button>').join('');document.getElementById('modalBg').classList.add('open');}
+  function applyVar(el){[...el.parentElement.children].forEach(c=>c.classList.remove('on'));el.classList.add('on');setTimeout(closeStyle,160);}
+  function closeStyle(){document.getElementById('modalBg').classList.remove('open');}
+  function openColor(){alert('색상 팔레트 모달 (와이어프레임 자리표시)');}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeStyle();});
+  clearPanel();
+</script>
+
+</body>
+</html>
