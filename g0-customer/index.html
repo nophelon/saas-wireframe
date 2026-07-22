@@ -1,0 +1,17 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nophelon — 고객 스킨 적용 검증</title><style>
+:root{--bg:#0f1115;--panel:#171a21;--line:#2a2f3a;--fg:#e7eaf0;--mut:#9aa3b2;--accent:#8b5cf6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:'Malgun Gothic',system-ui,sans-serif}
+header{padding:20px 24px;border-bottom:1px solid var(--line)}h1{margin:0 0 4px;font-size:18px}.sub{color:var(--mut);font-size:13px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:18px;padding:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.card h3{margin:0;padding:12px 14px 4px;font-size:14px}.card .m{padding:0 14px 8px;color:var(--mut);font-size:12px}
+.card a{color:var(--accent);font-size:12.5px;font-weight:600;text-decoration:none;margin:0 14px 10px;display:inline-block}
+iframe{width:100%;height:320px;border:0;border-top:1px solid var(--line);background:#fff}
+b{color:var(--accent)}
+</style></head><body>
+<header><h1>Nophelon — 고객 스킨 적용 검증</h1><div class="sub">같은 스킨(젠스타메이트) 하나에 <b>가상 고객 2곳</b>의 브랜드·콘텐츠를 입힘. 폰트 크기로 히어로 제목/부제 슬롯을 자동 식별 → 고객 문구·로고·브랜드색·이미지 적용.<br>⚠️ 히어로 제목이 여러 슬롯으로 쪼개져 "REAL ESTATE"가 남음 = <b>시맨틱 콘텐츠 매핑</b> 필요(핵심 발견).</div></header>
+<div class="grid">
+<div class="card"><h3>원본 스킨</h3><div class="m">젠스타메이트 (부동산) — 손대기 전</div><a href="젠스타-원본.html" target="_blank">전체보기 ↗</a><iframe src="젠스타-원본.html" loading="lazy"></iframe></div>
+<div class="card"><h3>고객 A · 그린테라스 (카페)</h3><div class="m">초록 브랜드 · Green 로고 · "도심 속 초록빛 휴식"</div><a href="그린테라스.html" target="_blank">전체보기 ↗</a><iframe src="그린테라스.html" loading="lazy"></iframe></div>
+<div class="card"><h3>고객 B · 블루핏 (피트니스)</h3><div class="m">블루 브랜드 · BluFit 로고 · "당신의 최고 컨디션을 설계합니다"</div><a href="블루핏.html" target="_blank">전체보기 ↗</a><iframe src="블루핏.html" loading="lazy"></iframe></div>
+</div></body></html>
