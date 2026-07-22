@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nophelon G0 — 섹션-스킨 렌더 검증</title>
 <style>
-  :root{--bg:#0f1115;--panel:#171a21;--line:#2a2f3a;--fg:#e7eaf0;--mut:#9aa3b2;--accent:#3ea6c9}
+  :root{--bg:#0f1115;--panel:#171a21;--line:#2a2f3a;--fg:#e7eaf0;--mut:#9aa3b2;--accent:#8b5cf6}
   *{box-sizing:border-box}
   body{margin:0;font-family:'Malgun Gothic',system-ui,sans-serif;background:var(--bg);color:var(--fg)}
-  header{padding:20px 24px;border-bottom:1px solid var(--line)}
+  header{padding:18px 24px;border-bottom:1px solid var(--line)}
   h1{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
-  .sub{color:var(--mut);font-size:13px;line-height:1.5}
+  .sub{color:var(--mut);font-size:13px;line-height:1.55}
   .tabs{display:flex;gap:8px;padding:14px 24px 0;flex-wrap:wrap}
   .tab{padding:8px 14px;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;
     background:var(--panel);color:var(--mut);cursor:pointer;font-size:13px;font-weight:600}
   .tab[aria-selected=true]{color:var(--fg);border-color:var(--accent);background:#1d222b}
   .note{padding:10px 24px;color:var(--mut);font-size:12.5px;border-bottom:1px solid var(--line);background:#12151b}
-  .stage{position:relative;height:calc(100vh - 190px);min-height:420px}
+  .stage{position:relative;height:calc(100vh - 188px);min-height:440px}
   iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
   iframe[hidden]{display:none}
   b{color:var(--accent)}
@@ -25,36 +25,28 @@
 <body>
 <header>
   <h1>Nophelon G0 — 섹션-스킨 렌더 검증</h1>
-  <div class="sub">실제 디자인(SAMYANG CI 가이드라인)을 <b>섹션-스킨 아키텍처</b>로 토큰화 → 렌더.
-    색 65 · 폰트 3 · 이미지 슬롯 287 · 텍스트 슬롯 88. 이미지 290개 전부 보존(원본=충실=리스킨).</div>
+  <div class="sub">실제 디자인(서리풀 뮤직 페스티벌)을 <b>토큰화 → 렌더</b>. 색 313 · 폰트 9 · 이미지 슬롯 85 · 텍스트 슬롯 198.
+    이미지는 슬롯에 <b>스톡</b>으로 주입(고객 이미지 재사용 금지 원칙).</div>
 </header>
 <div class="tabs" role="tablist">
-  <div class="tab" role="tab" aria-selected="true" data-t="fidelity">① 충실 재현</div>
-  <div class="tab" role="tab" aria-selected="false" data-t="original">원본(대조군)</div>
+  <div class="tab" role="tab" aria-selected="true" data-t="fidelity">① 충실 재현 + 스톡</div>
   <div class="tab" role="tab" aria-selected="false" data-t="reskin">② 리스킨(색·폰트만 교체)</div>
 </div>
-<div class="note" id="note">토큰 미지정으로 렌더 = 완전 보존. 원본과 대조해 <b>망가짐이 없는지</b> 확인하세요.</div>
+<div class="note" id="note"></div>
 <div class="stage">
-  <iframe id="fidelity" src="render-fidelity.html" title="충실 재현"></iframe>
-  <iframe id="original" src="original.html" title="원본" hidden></iframe>
-  <iframe id="reskin" src="render-reskin.html" title="리스킨" hidden></iframe>
+  <iframe id="fidelity" src="seoripul-fidelity.html" title="충실 재현"></iframe>
+  <iframe id="reskin" src="seoripul-reskin.html" title="리스킨" hidden></iframe>
 </div>
 <script>
   var notes={
-    fidelity:'토큰 미지정으로 렌더 = 완전 보존. 원본과 대조해 <b>망가짐이 없는지</b> 확인하세요.',
-    original:'원본 HTML 그대로(대조군). 위 ①과 나란히 비교하면 구조·이미지·레이아웃이 동일해야 합니다.',
-    reskin:'구조·이미지·텍스트는 <b>그대로</b> 두고 색 토큰(→청록 브랜드)과 폰트 토큰(→Noto Serif)만 교체. 같은 섹션이 다른 스킨으로 출력됩니다.'
+    fidelity:'원본 구조·레이아웃·타이포·색을 <b>그대로</b> 렌더 + 이미지 슬롯에 스톡 주입. 아래로 스크롤 → 컬러 pill 섹션(CULTURE·MUSIC·FESTIVAL…)이 원본 색 그대로 살아있음을 확인. ⚠️ 큰 회색 히어로는 원본 저장본에서 이미지가 이미 회색 플레이스홀더라 복원 불가(코퍼스 품질 이슈, 렌더러 문제 아님).',
+    reskin:'구조·텍스트·이미지는 <b>그대로</b>, 색 토큰(→보라 브랜드)과 폰트 토큰(→Noto Serif)만 교체. pill·타이틀이 일관되게 리스킨됨 = 같은 디자인을 다른 회사 색·폰트로 재사용하는 <b>섹션-스킨</b> 메커니즘.'
   };
   var tabs=[].slice.call(document.querySelectorAll('.tab'));
-  var frames={fidelity:fidelity,original:original,reskin:reskin};
-  tabs.forEach(function(tab){
-    tab.addEventListener('click',function(){
-      var t=tab.dataset.t;
-      tabs.forEach(function(x){x.setAttribute('aria-selected', x===tab)});
-      Object.keys(frames).forEach(function(k){frames[k].hidden=(k!==t)});
-      document.getElementById('note').innerHTML=notes[t];
-    });
-  });
+  var frames={fidelity:document.getElementById('fidelity'),reskin:document.getElementById('reskin')};
+  function sel(t){tabs.forEach(function(x){x.setAttribute('aria-selected',x.dataset.t===t)});Object.keys(frames).forEach(function(k){frames[k].hidden=(k!==t)});document.getElementById('note').innerHTML=notes[t];}
+  tabs.forEach(function(tab){tab.addEventListener('click',function(){sel(tab.dataset.t)})});
+  sel('fidelity');
 </script>
 </body>
 </html>
