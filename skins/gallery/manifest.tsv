@@ -8,11 +8,6 @@ OK	자동차	SK렌터카	company.skcarrental.com_index.html	3237KB	78s
 OK	자동차	해피렌트카	pinterest.com_pin_create_bookmarklet_media_http_3A_2F_2Fwww_	9153KB	37s
 FAIL	자동차	SK렌터카 스마트링크	www.sksmartlink.com	Command failed: node --import tsx script
 FAIL	자동차	코오롱모빌리티	www.kolonmobility.co.kr	Command failed: node --import tsx script
-FAIL	게임/취미	KT AI 보이스 스튜디오	aivoicestudio.ai	Command failed: node --import tsx script
-OK	게임/취미	Starboys NFT	starboysnft.io	1149KB	24s
-OK	게임/취미	리니지2 울프 프리뷰	lineage2.plaync.com_conts_2024_241016_update_section-1	10051KB	54s
-OK	게임/취미	대항해시대	uwo.line.games	9095KB	113s
-OK	게임/취미	G-star 2018 by PUBG	pubgmobile.kr_g-star2018	18425KB	109s
 OK	금융서비스	NH-AMUNDI ETF	www.hanaroetf.com	6939KB	99s
 OK	금융서비스	한화자산운용 PLUS ETF	www.plusetf.co.kr	6852KB	92s
 FAIL	금융서비스	키움자산운용  KOSEF ETF	www.kosef.co.kr	Command failed: node --import tsx script
