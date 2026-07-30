@@ -1,0 +1,77 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOPHELON 스킨 파일럿 — 원본 vs 스킨 (검증)</title>
+<style>
+:root{--bg:#0b0d12;--card:#161a22;--line:#242a36;--tx:#e8ecf3;--dim:#8a93a6;--acc:#5b8cff;--warn:#e0a355}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:'Pretendard',system-ui,-apple-system,sans-serif;line-height:1.5}
+header{padding:30px 40px 18px;border-bottom:1px solid var(--line)}
+h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.5px}
+.sub{color:var(--dim);margin-top:6px;font-size:13.5px;max-width:900px}
+.legend{margin-top:12px;font-size:12.5px;color:var(--dim);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;max-width:900px}
+.legend b{color:var(--tx)}
+main{padding:20px 40px 60px;max-width:1600px;margin:0 auto}
+.row{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.hd{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+.nm{font-size:16px;font-weight:700}.ind{font-size:12px;color:var(--dim);background:#0f1218;border:1px solid var(--line);border-radius:20px;padding:3px 11px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:0}
+figure{margin:0;border-right:1px solid var(--line)}figure:last-child{border-right:0}
+figcaption{font-size:12px;color:var(--dim);padding:9px 14px;font-weight:600;border-bottom:1px solid var(--line)}
+figcaption a{color:var(--acc);text-decoration:none}figcaption a:hover{text-decoration:underline}
+figure img{width:100%;display:block;cursor:zoom-in}
+.miss{padding:60px 14px;text-align:center;color:#c0546a;font-size:13px}
+.note{font-size:12.5px;color:var(--warn);padding:10px 16px;border-top:1px solid var(--line);background:rgba(224,163,85,.06)}
+@media (prefers-color-scheme:light){:root{--bg:#f6f7f9;--card:#fff;--line:#e5e8ee;--tx:#1a1d24;--dim:#6b7280;--warn:#a4680f}.ind{background:#f0f2f5}}
+</style></head><body>
+<header><h1>NOPHELON 디자인 스킨 파일럿 — 원본 vs 스킨</h1>
+<div class="sub">좌=원본 디자인 / 우=NOPHELON 스킨(텍스트·로고·이미지 교체). 스킨 썸네일·"전체보기" 클릭 시 실제 페이지(애니 포함). 총 7개 · 업종 전부 다름.</div>
+<div class="legend"><b>파일럿 목적</b> = 이 스킨화 방식이 쓸 만한지 리건 육안 판정. 🔎 표시 = 클로드가 확인한 품질 이슈. <b>공통 갭 3</b>: ①JS 비활성 캡처 → 히어로/네비 붕괴 ②이미지에 박힌 텍스트·브랜드 → 재작성 불가 ③외부 위젯·팝업 잔존.</div>
+</header>
+<main><section class="row">
+    <div class="hd"><span class="nm">삼양사 식품사업부</span><span class="ind">식품</span></div>
+    <div class="pair">
+      <figure><figcaption>원본</figcaption><img loading="lazy" src="thumbs/%EC%82%BC%EC%96%91%EC%82%AC%20%EC%8B%9D%ED%92%88%EC%82%AC%EC%97%85%EB%B6%80-orig.jpg"></figure>
+      <figure><figcaption>스킨 (NOPHELON) · <a href="skins/%EC%82%BC%EC%96%91%EC%82%AC%20%EC%8B%9D%ED%92%88%EC%82%AC%EC%97%85%EB%B6%80.skin.html" target="_blank" rel="noopener">전체보기 ↗</a></figcaption><a href="skins/%EC%82%BC%EC%96%91%EC%82%AC%20%EC%8B%9D%ED%92%88%EC%82%AC%EC%97%85%EB%B6%80.skin.html" target="_blank" rel="noopener"><img loading="lazy" src="thumbs/%EC%82%BC%EC%96%91%EC%82%AC%20%EC%8B%9D%ED%92%88%EC%82%AC%EC%97%85%EB%B6%80-skin.jpg"></a></figure>
+    </div>
+    <div class="note">🔎 (육안 미확인) 텍스트·로고·스톡 파이프라인 통과.</div>
+  </section><section class="row">
+    <div class="hd"><span class="nm">일루미엘</span><span class="ind">쇼핑</span></div>
+    <div class="pair">
+      <figure><figcaption>원본</figcaption><img loading="lazy" src="thumbs/%EC%9D%BC%EB%A3%A8%EB%AF%B8%EC%97%98-orig.jpg"></figure>
+      <figure><figcaption>스킨 (NOPHELON) · <a href="skins/%EC%9D%BC%EB%A3%A8%EB%AF%B8%EC%97%98.skin.html" target="_blank" rel="noopener">전체보기 ↗</a></figcaption><a href="skins/%EC%9D%BC%EB%A3%A8%EB%AF%B8%EC%97%98.skin.html" target="_blank" rel="noopener"><img loading="lazy" src="thumbs/%EC%9D%BC%EB%A3%A8%EB%AF%B8%EC%97%98-skin.jpg"></a></figure>
+    </div>
+    <div class="note">🔎 로고·HTML텍스트 재작성 OK. BUT 프로모가 이미지에 박힌 글자라 안 바뀜, 팝업/Language모달·제품브랜드 잔존.</div>
+  </section><section class="row">
+    <div class="hd"><span class="nm">CS WIND</span><span class="ind">건축/건설</span></div>
+    <div class="pair">
+      <figure><figcaption>원본</figcaption><img loading="lazy" src="thumbs/CS%20WIND-orig.jpg"></figure>
+      <figure><figcaption>스킨 (NOPHELON) · <a href="skins/CS%20WIND.skin.html" target="_blank" rel="noopener">전체보기 ↗</a></figcaption><a href="skins/CS%20WIND.skin.html" target="_blank" rel="noopener"><img loading="lazy" src="thumbs/CS%20WIND-skin.jpg"></a></figure>
+    </div>
+    <div class="note">🔎 로고 교체 OK. 히어로가 백지 — JS 구동 영상/슬라이더라 캡처(JS 비활성)에 안 잡힘.</div>
+  </section><section class="row">
+    <div class="hd"><span class="nm">아르떼</span><span class="ind">디자인</span></div>
+    <div class="pair">
+      <figure><figcaption>원본</figcaption><img loading="lazy" src="thumbs/%EC%95%84%EB%A5%B4%EB%96%BC-orig.jpg"></figure>
+      <figure><figcaption>스킨 (NOPHELON) · <a href="skins/%EC%95%84%EB%A5%B4%EB%96%BC.skin.html" target="_blank" rel="noopener">전체보기 ↗</a></figcaption><a href="skins/%EC%95%84%EB%A5%B4%EB%96%BC.skin.html" target="_blank" rel="noopener"><img loading="lazy" src="thumbs/%EC%95%84%EB%A5%B4%EB%96%BC-skin.jpg"></a></figure>
+    </div>
+    <div class="note">🔎 (육안 미확인) 파이프라인 통과. 썸네일 작음 — 콘텐츠 확인 필요.</div>
+  </section><section class="row">
+    <div class="hd"><span class="nm">고요움</span><span class="ind">패션</span></div>
+    <div class="pair">
+      <figure><figcaption>원본</figcaption><img loading="lazy" src="thumbs/%EA%B3%A0%EC%9A%94%EC%9B%80-orig.jpg"></figure>
+      <figure><figcaption>스킨 (NOPHELON) · <a href="skins/%EA%B3%A0%EC%9A%94%EC%9B%80.skin.html" target="_blank" rel="noopener">전체보기 ↗</a></figcaption><a href="skins/%EA%B3%A0%EC%9A%94%EC%9B%80.skin.html" target="_blank" rel="noopener"><img loading="lazy" src="thumbs/%EA%B3%A0%EC%9A%94%EC%9B%80-skin.jpg"></a></figure>
+    </div>
+    <div class="note">🔎 히어로 스톡사진 교체된 듯. 네비 CSS 붕괴(세로 텍스트), 카카오 위젯 잔존.</div>
+  </section><section class="row">
+    <div class="hd"><span class="nm">현대 월드와이드 뉴스룸</span><span class="ind">자동차</span></div>
+    <div class="pair">
+      <figure><figcaption>원본</figcaption><img loading="lazy" src="thumbs/%ED%98%84%EB%8C%80%20%EC%9B%94%EB%93%9C%EC%99%80%EC%9D%B4%EB%93%9C%20%EB%89%B4%EC%8A%A4%EB%A3%B8-orig.jpg"></figure>
+      <figure><figcaption>스킨 (NOPHELON) · <a href="skins/%ED%98%84%EB%8C%80%20%EC%9B%94%EB%93%9C%EC%99%80%EC%9D%B4%EB%93%9C%20%EB%89%B4%EC%8A%A4%EB%A3%B8.skin.html" target="_blank" rel="noopener">전체보기 ↗</a></figcaption><a href="skins/%ED%98%84%EB%8C%80%20%EC%9B%94%EB%93%9C%EC%99%80%EC%9D%B4%EB%93%9C%20%EB%89%B4%EC%8A%A4%EB%A3%B8.skin.html" target="_blank" rel="noopener"><img loading="lazy" src="thumbs/%ED%98%84%EB%8C%80%20%EC%9B%94%EB%93%9C%EC%99%80%EC%9D%B4%EB%93%9C%20%EB%89%B4%EC%8A%A4%EB%A3%B8-skin.jpg"></a></figure>
+    </div>
+    <div class="note">🔎 (육안 미확인) 대용량(14MB) 완주. 뉴스룸형 레이아웃.</div>
+  </section><section class="row">
+    <div class="hd"><span class="nm">와이피얼라이언스</span><span class="ind">금융서비스</span></div>
+    <div class="pair">
+      <figure><figcaption>원본</figcaption><img loading="lazy" src="thumbs/%EC%99%80%EC%9D%B4%ED%94%BC%EC%96%BC%EB%9D%BC%EC%9D%B4%EC%96%B8%EC%8A%A4-orig.jpg"></figure>
+      <figure><figcaption>스킨 (NOPHELON) · <a href="skins/%EC%99%80%EC%9D%B4%ED%94%BC%EC%96%BC%EB%9D%BC%EC%9D%B4%EC%96%B8%EC%8A%A4.skin.html" target="_blank" rel="noopener">전체보기 ↗</a></figcaption><a href="skins/%EC%99%80%EC%9D%B4%ED%94%BC%EC%96%BC%EB%9D%BC%EC%9D%B4%EC%96%B8%EC%8A%A4.skin.html" target="_blank" rel="noopener"><img loading="lazy" src="thumbs/%EC%99%80%EC%9D%B4%ED%94%BC%EC%96%BC%EB%9D%BC%EC%9D%B4%EC%96%B8%EC%8A%A4-skin.jpg"></a></figure>
+    </div>
+    <div class="note">🔎 (육안 미확인) 파이프라인 통과.</div>
+  </section></main></body></html>
