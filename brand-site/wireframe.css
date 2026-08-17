@@ -148,8 +148,15 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
    DESIGN SKINS (캐러셀 + 갤러리)
    ========================================================================== */
 .skins { padding: 80px 0; background: var(--bg-white); }
-.skin-carousel { display: flex; gap: 24px; margin-top: 48px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 16px; }
-.skin-card { min-width: 340px; flex-shrink: 0; scroll-snap-align: start; }
+.skin-carousel { margin-top: 48px; overflow: hidden; padding-bottom: 16px; }
+.skin-track { display: flex; gap: 24px; width: max-content; animation: skin-marquee 40s linear infinite; }
+.skin-carousel:hover .skin-track { animation-play-state: paused; }
+.skin-card { min-width: 340px; flex-shrink: 0; }
+@keyframes skin-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-50% - 12px)); } /* -12px = 카드 간 gap(24px)의 절반, 이음매 정렬 */
+}
+@media (prefers-reduced-motion: reduce) { .skin-track { animation: none; } }
 .skin-card .img-placeholder { aspect-ratio: 3/2; }
 .skin-name { font-size: 15px; font-weight: 600; color: var(--text-black); margin-top: 12px; }
 .skin-cat { font-size: 13px; color: var(--text-light); margin-top: 2px; }
