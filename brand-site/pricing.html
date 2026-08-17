@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nophelon — 요금제, 딱 필요한 만큼만 골라요</title>
+  <meta name="description" content="Nophelon 요금제 안내예요. 라이트·표준·에이전시 플랜 구성을 한눈에 비교하고, 자주 묻는 질문까지 확인해 보세요.">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link href="wireframe.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Nophelon</a>
+        <nav class="nav-links">
+          <a href="features.html">이렇게 만들어요</a>
+          <a href="design.html">디자인</a>
+          <a href="pricing.html" class="is-active">요금제</a>
+          <a href="about.html">회사소개</a>
+          <a href="blog.html">블로그</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-primary btn-sm">시작하기</a>
+          <button class="nav-hamburger" aria-label="메뉴 열기"><i data-lucide="menu"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="features.html">이렇게 만들어요</a>
+      <a href="design.html">디자인</a>
+      <a href="pricing.html">요금제</a>
+      <a href="about.html">회사소개</a>
+      <a href="blog.html">블로그</a>
+      <a href="login.html">시작하기</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label">요금제</p>
+        <h1 class="section-title">딱 필요한 만큼만 골라요</h1>
+        <p class="section-desc">가격은 준비 중이에요. 플랜 구성을 먼저 보여드려요.</p>
+      </div>
+    </section>
+
+    <!-- ============ PRICING CARDS ============ -->
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <p class="plan-name">라이트</p>
+            <p class="plan-price">₩ 00,000 <span>/월</span></p>
+            <p class="plan-price-note">가격은 준비 중이에요</p>
+            <ul class="plan-features">
+              <li><i data-lucide="check"></i> 페이지 수 안내가 들어갈 자리</li>
+              <li><i data-lucide="check"></i> 수정 횟수 안내가 들어갈 자리</li>
+              <li><i data-lucide="check"></i> 지원 언어 안내가 들어갈 자리</li>
+              <li><i data-lucide="check"></i> 호스팅 포함</li>
+            </ul>
+            <a href="login.html" class="btn btn-secondary btn-block">시작하기</a>
+          </div>
+          <div class="pricing-card is-featured">
+            <span class="plan-badge">추천</span>
+            <p class="plan-name">표준</p>
+            <p class="plan-price">₩ 00,000 <span>/월</span></p>
+            <p class="plan-price-note">가격은 준비 중이에요</p>
+            <ul class="plan-features">
+              <li><i data-lucide="check"></i> 라이트의 모든 기능</li>
+              <li><i data-lucide="check"></i> 페이지 수 안내가 들어갈 자리</li>
+              <li><i data-lucide="check"></i> 수정 횟수 안내가 들어갈 자리</li>
+              <li><i data-lucide="check"></i> AI 검색 최적화(AEO·GEO)</li>
+              <li><i data-lucide="check"></i> 운영 데이터·접수함</li>
+            </ul>
+            <a href="login.html" class="btn btn-primary btn-block">시작하기</a>
+          </div>
+          <div class="pricing-card">
+            <p class="plan-name">에이전시</p>
+            <p class="plan-price">₩ 00,000 <span>/월</span></p>
+            <p class="plan-price-note">가격은 준비 중이에요</p>
+            <ul class="plan-features">
+              <li><i data-lucide="check"></i> 표준의 모든 기능</li>
+              <li><i data-lucide="check"></i> 여러 프로젝트 관리</li>
+              <li><i data-lucide="check"></i> 팀 권한·협업</li>
+              <li><i data-lucide="check"></i> 다국어 사이트</li>
+            </ul>
+            <a href="login.html" class="btn btn-secondary btn-block">시작하기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMPARE TABLE ============ -->
+    <section class="compare">
+      <div class="container">
+        <div class="text-center">
+          <p class="section-label">한눈에 비교</p>
+          <h2 class="section-title">플랜별로 뭐가 다른가요</h2>
+        </div>
+        <div class="compare-scroll">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>기능</th>
+                <th>라이트</th>
+                <th class="col-featured">표준</th>
+                <th>에이전시</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">페이지 수</th>
+                <td>0개</td>
+                <td class="col-featured">0개</td>
+                <td>0개</td>
+              </tr>
+              <tr>
+                <th scope="row">수정 횟수</th>
+                <td>0회</td>
+                <td class="col-featured">0회</td>
+                <td>안내 예정</td>
+              </tr>
+              <tr>
+                <th scope="row">지원 언어 수</th>
+                <td>0개</td>
+                <td class="col-featured">0개</td>
+                <td>0개</td>
+              </tr>
+              <tr>
+                <th scope="row">호스팅</th>
+                <td><i data-lucide="check"></i></td>
+                <td class="col-featured"><i data-lucide="check"></i></td>
+                <td><i data-lucide="check"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">AI 검색 최적화(AEO·GEO)</th>
+                <td><i data-lucide="minus"></i></td>
+                <td class="col-featured"><i data-lucide="check"></i></td>
+                <td><i data-lucide="check"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">운영 데이터·접수함</th>
+                <td><i data-lucide="minus"></i></td>
+                <td class="col-featured"><i data-lucide="check"></i></td>
+                <td><i data-lucide="check"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">여러 프로젝트 관리</th>
+                <td><i data-lucide="minus"></i></td>
+                <td class="col-featured"><i data-lucide="minus"></i></td>
+                <td><i data-lucide="check"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">팀 권한·협업</th>
+                <td><i data-lucide="minus"></i></td>
+                <td class="col-featured"><i data-lucide="minus"></i></td>
+                <td><i data-lucide="check"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">다국어 사이트</th>
+                <td><i data-lucide="minus"></i></td>
+                <td class="col-featured"><i data-lucide="minus"></i></td>
+                <td><i data-lucide="check"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="faq">
+      <div class="container">
+        <div class="text-center">
+          <p class="section-label">자주 묻는 질문</p>
+          <h2 class="section-title">요금제, 이런 게 궁금하실 거예요</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item is-open">
+            <button class="faq-q">가격은 언제 정해지나요?<i data-lucide="chevron-down"></i></button>
+            <div class="faq-a">가격은 준비 중이에요. 확정되는 대로 이 자리에 안내드릴 예정이에요. 지금은 플랜 구성만 먼저 보여드리고 있어요.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">플랜은 나중에 바꿀 수 있나요?<i data-lucide="chevron-down"></i></button>
+            <div class="faq-a">플랜 변경 관련 안내가 들어갈 자리예요. 사용하시다가 필요에 맞춰 올리거나 내리는 방법을 여기서 설명드릴게요.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">어떤 플랜부터 시작하면 좋을까요?<i data-lucide="chevron-down"></i></button>
+            <div class="faq-a">플랜 추천 안내가 들어갈 자리예요. 브랜드 규모와 필요한 기능에 맞춰 어떤 플랜이 잘 맞는지 안내드릴 예정이에요.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">호스팅도 요금에 포함되나요?<i data-lucide="chevron-down"></i></button>
+            <div class="faq-a">호스팅 포함 여부 안내가 들어갈 자리예요. 만든 홈페이지를 어떻게 게시하고 운영하는지 함께 설명드릴게요.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">먼저 체험해 볼 수 있나요?<i data-lucide="chevron-down"></i></button>
+            <div class="faq-a">체험 방법 안내가 들어갈 자리예요. 브랜드 질문 몇 개로 첫 화면까지 만들어 볼 수 있는 방법을 여기서 알려드릴 예정이에요.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta">
+      <div class="container">
+        <h2 class="section-title">우리 브랜드다운 홈페이지,<br>지금 시작해볼까요?</h2>
+        <a href="login.html" class="btn btn-primary">무료로 시작하기</a>
+        <p class="microcopy">브랜드 질문 몇 개면 첫 화면까지 나와요</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand-name">Nophelon</p>
+          <p class="footer-brand-desc">브랜드를 이해하고 맞춰서 만드는 AI 웹 빌더</p>
+        </div>
+        <div>
+          <p class="footer-col-title">제품</p>
+          <a href="features.html">이렇게 만들어요</a>
+          <a href="design.html">디자인</a>
+          <a href="pricing.html">요금제</a>
+        </div>
+        <div>
+          <p class="footer-col-title">회사</p>
+          <a href="about.html">소개</a>
+          <a href="blog.html">블로그</a>
+          <a href="contact.html">문의</a>
+        </div>
+        <div>
+          <p class="footer-col-title">고객 지원</p>
+          <a href="help.html">도움말</a>
+          <a href="contact.html">이메일 문의</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Nophelon. All rights reserved.</span>
+        <span>이용약관 | 개인정보처리방침</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const hamburger = document.querySelector('.nav-hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => mobileMenu.classList.toggle('is-open'));
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('is-open')));
+    }
+    document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('is-open')));
+  </script>
+</body>
+</html>

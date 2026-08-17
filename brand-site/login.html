@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 — Nophelon</title>
+  <meta name="description" content="Nophelon에 로그인하고 우리 브랜드 홈페이지를 이어서 만들어보세요.">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link href="wireframe.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Nophelon</a>
+        <nav class="nav-links">
+          <a href="features.html">이렇게 만들어요</a>
+          <a href="design.html">디자인</a>
+          <a href="pricing.html">요금제</a>
+          <a href="about.html">회사소개</a>
+          <a href="blog.html">블로그</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-primary btn-sm">시작하기</a>
+          <button class="nav-hamburger" aria-label="메뉴 열기"><i data-lucide="menu"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="features.html">이렇게 만들어요</a>
+      <a href="design.html">디자인</a>
+      <a href="pricing.html">요금제</a>
+      <a href="about.html">회사소개</a>
+      <a href="blog.html">블로그</a>
+      <a href="login.html">시작하기</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ AUTH ============ -->
+    <section class="auth">
+      <div class="auth-card">
+        <h1 class="auth-title">다시 오신 걸 환영해요</h1>
+        <p class="auth-sub">로그인하고 우리 브랜드 홈페이지를 이어서 만들어요</p>
+        <button class="auth-social"><i data-lucide="chrome"></i> Google로 계속하기</button>
+        <div class="auth-divider">또는</div>
+        <div class="form-field"><label>이메일</label><input type="email" placeholder="name@company.com"></div>
+        <div class="form-field"><label>비밀번호</label><input type="password" placeholder="비밀번호"></div>
+        <a href="#" style="display:block;text-align:right;font-size:13px;color:var(--text-light);margin-bottom:16px">비밀번호를 잊으셨나요?</a>
+        <a href="#" class="btn btn-primary btn-block">로그인</a>
+        <p class="auth-foot">아직 계정이 없으신가요? <a href="signup.html">회원가입</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+    const hamburger = document.querySelector('.nav-hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => mobileMenu.classList.toggle('is-open'));
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('is-open')));
+    }
+  </script>
+</body>
+</html>

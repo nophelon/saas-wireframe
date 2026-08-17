@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nophelon — 디자인 갤러리, 우리 브랜드에 맞는 디자인 골라 시작하기</title>
+  <meta name="description" content="업종과 분위기에 맞춘 디자인 스킨을 골라 시작하세요. 고른 디자인은 우리 브랜드 색과 분위기에 맞춰 자동으로 변형됩니다.">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link href="wireframe.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Nophelon</a>
+        <nav class="nav-links">
+          <a href="features.html">이렇게 만들어요</a>
+          <a href="design.html" class="is-active">디자인</a>
+          <a href="pricing.html">요금제</a>
+          <a href="about.html">회사소개</a>
+          <a href="blog.html">블로그</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-primary btn-sm">시작하기</a>
+          <button class="nav-hamburger" aria-label="메뉴 열기"><i data-lucide="menu"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="features.html">이렇게 만들어요</a>
+      <a href="design.html">디자인</a>
+      <a href="pricing.html">요금제</a>
+      <a href="about.html">회사소개</a>
+      <a href="blog.html">블로그</a>
+      <a href="login.html">시작하기</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label">디자인</p>
+        <h1 class="section-title">우리 브랜드에 어울리는 디자인, 골라서 시작해요</h1>
+        <p class="section-desc">고른 디자인은 우리 브랜드 색과 분위기에 맞춰 자동으로 변형돼요.</p>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY (필터 + 그리드) ============ -->
+    <section style="padding:48px 0">
+      <div class="container">
+        <div class="filter-tabs">
+          <button class="filter-tab is-active">전체</button>
+          <button class="filter-tab">전문 서비스</button>
+          <button class="filter-tab">커머스</button>
+          <button class="filter-tab">헬스케어</button>
+          <button class="filter-tab">F&amp;B</button>
+          <button class="filter-tab">교육</button>
+          <button class="filter-tab">크리에이터</button>
+        </div>
+
+        <div class="skin-grid">
+          <div class="skin-card">
+            <div class="img-placeholder"><i data-lucide="image"></i></div>
+            <p class="skin-name">모던 컨설팅</p>
+            <p class="skin-cat">전문 서비스 / 신뢰감 있는</p>
+          </div>
+          <div class="skin-card">
+            <div class="img-placeholder"><i data-lucide="image"></i></div>
+            <p class="skin-name">클린 스토어</p>
+            <p class="skin-cat">커머스 / 깔끔한</p>
+          </div>
+          <div class="skin-card">
+            <div class="img-placeholder"><i data-lucide="image"></i></div>
+            <p class="skin-name">케어 클리닉</p>
+            <p class="skin-cat">헬스케어 / 차분한</p>
+          </div>
+          <div class="skin-card">
+            <div class="img-placeholder"><i data-lucide="image"></i></div>
+            <p class="skin-name">데일리 다이닝</p>
+            <p class="skin-cat">F&amp;B / 따뜻한</p>
+          </div>
+          <div class="skin-card">
+            <div class="img-placeholder"><i data-lucide="image"></i></div>
+            <p class="skin-name">러닝 스튜디오</p>
+            <p class="skin-cat">교육 / 밝은</p>
+          </div>
+          <div class="skin-card">
+            <div class="img-placeholder"><i data-lucide="image"></i></div>
+            <p class="skin-name">크리에이터 포트폴리오</p>
+            <p class="skin-cat">크리에이터 / 개성 있는</p>
+          </div>
+          <div class="skin-card">
+            <div class="img-placeholder"><i data-lucide="image"></i></div>
+            <p class="skin-name">로펌 프로페셔널</p>
+            <p class="skin-cat">전문 서비스 / 단정한</p>
+          </div>
+          <div class="skin-card">
+            <div class="img-placeholder"><i data-lucide="image"></i></div>
+            <p class="skin-name">브랜드 커머스</p>
+            <p class="skin-cat">커머스 / 감각적인</p>
+          </div>
+          <div class="skin-card">
+            <div class="img-placeholder"><i data-lucide="image"></i></div>
+            <p class="skin-name">웰니스 스파</p>
+            <p class="skin-cat">헬스케어 / 편안한</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 변형 안내 밴드 ============ -->
+    <section class="story">
+      <div class="container">
+        <div class="story-grid">
+          <div class="img-placeholder"><i data-lucide="image"></i></div>
+          <div class="story-text">
+            <h2 class="section-title">스킨은 시작점일 뿐이에요</h2>
+            <p>여기 있는 디자인은 완성된 결과물이 아니라, 우리 브랜드를 담기 위한 출발점이에요. 마음에 드는 스킨을 하나 고르면, 그 짜임새 위에 우리 브랜드 이야기를 얹어드려요.</p>
+            <p>브랜드 DNA에 맞춰 색과 폰트, 이미지가 알아서 바뀌기 때문에, 같은 스킨으로 시작해도 다른 브랜드와 똑같아 보이지 않아요. 우리다운 분위기로 자연스럽게 완성돼요.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta">
+      <div class="container">
+        <h2 class="section-title">마음에 드는 디자인,<br>우리 브랜드로 시작해볼까요?</h2>
+        <a href="login.html" class="btn btn-primary">무료로 시작하기</a>
+        <p class="microcopy">브랜드 질문 몇 개면 첫 화면까지 나와요</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand-name">Nophelon</p>
+          <p class="footer-brand-desc">브랜드를 이해하고 맞춰서 만드는 AI 웹 빌더</p>
+        </div>
+        <div>
+          <p class="footer-col-title">제품</p>
+          <a href="features.html">이렇게 만들어요</a>
+          <a href="design.html">디자인</a>
+          <a href="pricing.html">요금제</a>
+        </div>
+        <div>
+          <p class="footer-col-title">회사</p>
+          <a href="about.html">소개</a>
+          <a href="blog.html">블로그</a>
+          <a href="contact.html">문의</a>
+        </div>
+        <div>
+          <p class="footer-col-title">고객 지원</p>
+          <a href="help.html">도움말</a>
+          <a href="contact.html">이메일 문의</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Nophelon. All rights reserved.</span>
+        <span>이용약관 | 개인정보처리방침</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const hamburger = document.querySelector('.nav-hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => mobileMenu.classList.toggle('is-open'));
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('is-open')));
+    }
+  </script>
+</body>
+</html>

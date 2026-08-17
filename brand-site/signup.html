@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nophelon — 회원가입</title>
+  <meta name="description" content="Nophelon 회원가입. 신용카드 없이 무료로 시작하고, 브랜드 질문 몇 개로 바로 인터뷰를 시작하세요.">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link href="wireframe.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Nophelon</a>
+        <nav class="nav-links">
+          <a href="features.html">이렇게 만들어요</a>
+          <a href="design.html">디자인</a>
+          <a href="pricing.html">요금제</a>
+          <a href="about.html">회사소개</a>
+          <a href="blog.html">블로그</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-primary btn-sm">시작하기</a>
+          <button class="nav-hamburger" aria-label="메뉴 열기"><i data-lucide="menu"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="features.html">이렇게 만들어요</a>
+      <a href="design.html">디자인</a>
+      <a href="pricing.html">요금제</a>
+      <a href="about.html">회사소개</a>
+      <a href="blog.html">블로그</a>
+      <a href="login.html">시작하기</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ AUTH (회원가입) ============ -->
+    <section class="auth">
+      <div class="auth-card">
+        <h1 class="auth-title">브랜드 질문 몇 개로 시작해요</h1>
+        <p class="auth-sub">신용카드 없이 무료로 시작할 수 있어요</p>
+        <button class="auth-social"><i data-lucide="chrome"></i> Google로 시작하기</button>
+        <div class="auth-divider">또는</div>
+        <div class="form-field"><label>이메일</label><input type="email" placeholder="name@company.com"></div>
+        <div class="form-field"><label>비밀번호</label><input type="password" placeholder="8자 이상"></div>
+        <label class="auth-check"><input type="checkbox"> <span><a href="#">이용약관</a>과 <a href="#">개인정보처리방침</a>에 동의합니다</span></label>
+        <a href="#" class="btn btn-primary btn-block">무료로 시작하기</a>
+        <p class="microcopy" style="text-align:center">가입하면 바로 브랜드 인터뷰가 시작돼요</p>
+        <p class="auth-foot">이미 계정이 있으신가요? <a href="login.html">로그인</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+    const hamburger = document.querySelector('.nav-hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => mobileMenu.classList.toggle('is-open'));
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('is-open')));
+    }
+  </script>
+</body>
+</html>
