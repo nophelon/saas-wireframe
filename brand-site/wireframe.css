@@ -124,7 +124,8 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
 .stat-item { text-align: center; }
 .stat-number { font-size: 40px; font-weight: 700; color: var(--text-black); line-height: 1.1; }
 .stat-label { font-size: 14px; color: var(--text-light); margin-top: 8px; }
-.authority-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.authority-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+@media (max-width: 1024px) { .authority-cards { grid-template-columns: repeat(2, 1fr); } }
 .authority-card { padding: 32px; border: 1px solid var(--border-light); border-radius: var(--radius-md); }
 .authority-card .icon-box { margin-bottom: 20px; }
 .authority-card-title { font-size: 17px; font-weight: 700; color: var(--text-black); margin-bottom: 8px; }
