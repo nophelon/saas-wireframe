@@ -308,7 +308,7 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
 /* 고객 문제 공감 카드(홈 2번째 섹션) */
 .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
 .pain-card { background: var(--bg-light); border-radius: var(--radius-md); padding: 28px; }
-.pain-card > svg { width: 26px; height: 26px; color: var(--text-muted); margin-bottom: 12px; }
+.pain-card > svg { width: 26px; height: 26px; color: var(--text-muted); margin-bottom: 12px; transform: scaleX(-1); } /* 닫는(반대편) 따옴표 모양으로 반전 */
 .pain-text { font-size: 16px; color: var(--text-dark); line-height: 1.7; }
 .pain-who { font-size: 13px; color: var(--text-light); margin-top: 14px; }
 
